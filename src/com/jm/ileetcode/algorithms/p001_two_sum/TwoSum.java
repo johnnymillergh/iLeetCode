@@ -1,6 +1,4 @@
-package com.jm.ileetcode.p001_two_sum;
-
-import java.util.HashSet;
+package com.jm.ileetcode.algorithms.p001_two_sum;
 
 public class TwoSum {
     public static int[] twoSum(int[] nums, int target) {
