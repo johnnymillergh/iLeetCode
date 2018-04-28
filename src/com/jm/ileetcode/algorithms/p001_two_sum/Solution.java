@@ -1,6 +1,6 @@
 package com.jm.ileetcode.algorithms.p001_two_sum;
 
-public class TwoSum {
+public class Solution {
     public static int[] twoSum(int[] nums, int target) {
         int[] resultIndices = new int[]{-1, -1};
 
