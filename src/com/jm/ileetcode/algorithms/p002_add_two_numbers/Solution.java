@@ -1,7 +1,5 @@
 package com.jm.ileetcode.algorithms.p002_add_two_numbers;
 
-import java.util.Scanner;
-
 /**
  * Definition for singly-linked list.<br>
  * public class ListNode {<br>
@@ -24,35 +22,31 @@ import java.util.Scanner;
  */
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        ListNode result = new ListNode(-1);
-        ListNode tail = result;
-        ListNode iterator1 = l1.next;
-        ListNode iterator2 = l2.next;
-
-        boolean isOverTen = false;
-        while (iterator1 != null || iterator2 != null) {
-            ListNode sum = null;
-
-            int rawSum = iterator1.val + iterator2.val;
-            if (isOverTen) rawSum += 1;
-
-            if (rawSum < 10) {
-                sum = new ListNode(rawSum);
-                isOverTen = false;
-            } else {
-                sum = new ListNode((iterator1.val + iterator2.val) % 10);
-                isOverTen = true;
+        ListNode c1 = l1;
+        ListNode c2 = l2;
+        ListNode pre = new ListNode(0);
+        ListNode d = pre;
+        int sum = 0;
+        while (c1 != null || c2 != null) {
+            if (c1 != null) {
+                sum += c1.val;
+                c1 = c1.next;
+            }
+            if (c2 != null) {
+                sum += c2.val;
+                c2 = c2.next;
             }
 
-            sum.next = tail.next;
-            tail.next = sum;
-            tail = sum;
-
-            iterator1 = iterator1.next;
-            iterator2 = iterator2.next;
+            d.next = new ListNode(sum % 10);
+            sum /= 10;
+            d = d.next;
         }
 
-        return result.next;
+        if (sum == 1) {
+            d.next = new ListNode(1);
+        }
+
+        return pre.next;
     }
 
     public static void main(String[] args) {
