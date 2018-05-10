@@ -2,7 +2,7 @@ package com.jm.ileetcode.algorithms.p006_zigzag_conversion;
 
 public class Solution {
     public static String convert(String s, int numRows) {
-        if(s==null||s.length()==0) return "";
+        if (s == null || s.length() == 0) return "";
         if (numRows == 1 || s.length() < numRows) {
             return s;
         }
