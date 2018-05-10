@@ -2,11 +2,57 @@ package com.jm.ileetcode.algorithms.p006_zigzag_conversion;
 
 public class Solution {
     public static String convert(String s, int numRows) {
-        return null;
+        if(s==null||s.length()==0) return "";
+        if (numRows == 1 || s.length() < numRows) {
+            return s;
+        }
+
+        StringBuilder[] stringBuilders = new StringBuilder[numRows];
+        boolean isOpposite = false;
+        int count;
+        int i;
+        int length = s.length();
+
+        for (i = 0; i < numRows; i++) {
+            stringBuilders[i] = new StringBuilder();
+        }
+        for (i = 0; i < numRows; i++) {
+            stringBuilders[i].append(s.charAt(i));
+        }
+        count = numRows;
+
+        while (true) {
+            if (i < length) {
+                if (count == numRows || count == 1) {
+                    isOpposite = !isOpposite;
+                }
+                if (!isOpposite) {
+                    count++;
+                    stringBuilders[count - 1].append(s.charAt(i));
+                    i++;
+                } else {
+                    count--;
+                    stringBuilders[count - 1].append(s.charAt(i));
+                    i++;
+                }
+            } else {
+                break;
+            }
+        }
+
+//        for (int j = 0; j < numRows; j++) {
+//            System.out.println(stringBuilders[j].toString());
+//        }
+
+        StringBuilder result = new StringBuilder();
+        for (StringBuilder sb : stringBuilders) {
+            result.append(sb);
+        }
+        return result.toString();
     }
 
     public static void main(String[] args) {
-
+        System.out.println(convert("PAYPALISHIRING", 4));
     }
 }
 /**
